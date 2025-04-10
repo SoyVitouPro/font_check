@@ -1,19 +1,20 @@
 from setuptools import setup, find_packages
 
 setup(
-    name='module_boilerplate',
-    version='0.1.2', 
+    name='font_check',
+    version='0.0.0', 
     packages=find_packages(),
     include_package_data=True,
     package_data={
-        'rdlab_dataset': ['data/*.pkl', 'font/*.ttf'],
+        'font_check': ['data/*.txt'],
     },
     long_description=open('README.md').read(),
     long_description_content_type='text/markdown',
     author='soyvitou',
     author_email='soyvitoupro@gmail.com',
-    url='https://github.com/SoyVitouPro/python-modules-boilerplate',
+    url='https://github.com/SoyVitouPro/font_check',
     install_requires=[
+        "pillow"
     ],
     classifiers=[
         "Programming Language :: Python :: 3",

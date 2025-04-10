@@ -11,6 +11,14 @@ To install this package, run the following command:
 pip install font_check
 ```
 
+### Usage
+
+```python
+from font_check.module import FontRendererKh
+fontkh = FontRendererKh(font_path="khFont.ttf", columns=3)
+fontkh.render_all()
+```
+
 
 ## Contributing
 Contributions to this module are welcome. Please feel free to fork the repository, make changes, and submit a pull request.
