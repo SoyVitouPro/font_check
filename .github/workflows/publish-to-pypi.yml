@@ -1,0 +1,45 @@
+name: Publish Python 🐍 distribution 📦 to PyPI
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-publish:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install setuptools wheel twine bump2version
+
+    - name: Configure git
+      run: |
+        git config --global user.email "vitoupro.vtp@gmail.com"
+        git config --global user.name "SoyVitouPro"
+
+    - name: Bump version
+      run: |
+        bump2version patch --config-file .bumpversion.cfg
+
+    - name: Build dist
+      run: |
+        python setup.py sdist bdist_wheel
+
+    - name: Publish distribution 📦 to PyPI
+      uses: pypa/gh-action-pypi-publish@v1.4.2
+      with:
+        user: __token__
+        password: ${{ secrets.PYPI_API_TOKEN }}
+        packages_dir: dist
+        verify_metadata: true
+        skip_existing: false
+        verbose: true
